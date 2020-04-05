@@ -1,6 +1,30 @@
 <?php
+require_once 'vendor/autoload.php';
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Models\Job;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'cursophp',
+    'username'  => 'php',
+    'password'  => 'laboratorio',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',    
+]);
+
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();
+
+
 //import de archivos
-include('jobs.php');
+require_once ('jobs.php');
 
 //definición de variables
 $var1 = 1;
@@ -62,7 +86,7 @@ $limitMonths = 12; //ver jobs de arreglo realizados en los ultimos 12 meses
             for ($idx = 0; $idx < count($jobs); $idx = $idx + 1) {
               //$totalMonths = $totalMonths + $jobs[$idx]['months'];
               //sustituye la expresión anterior
-              $totalMonths += $jobs[$idx]->getMonths();
+              //$totalMonths += $jobs[$idx]->getMonths();
 
               //Si cumple la condición y si se cumple termina el ciclo for y sale
               if ($totalMonths > $limitMonths) {
@@ -79,7 +103,7 @@ $limitMonths = 12; //ver jobs de arreglo realizados en los ultimos 12 meses
           <div class="project">
             <?php
             for ($idx = 0; $idx < count($projects); $idx = $idx + 1) {
-              $totalMonths += $projects[$idx]->getMonths();
+              //$totalMonths += $projects[$idx]->getMonths();
               if ($totalMonths > $limitMonths) {
                 break;
               }

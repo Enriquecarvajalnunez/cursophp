@@ -1,22 +1,12 @@
 <?php
-require_once 'vendor/autoload.php';
 
-use App\Models\{Job,Project,Printable};
+use App\Models\{Job,Project};
 
+$jobs = Job::all();
 
-$job1 = new Job('php','descripcion',true,4);
-$job2 = new Job('java','descripcion2',true,3);
-$job3 = new Job('Node js','descripcion3',true,2);
-
+  
 $project1 = new Project('project1','descripción1',true,1);
 $project2 = new Project('project2','descripción2',true,1);
-
-//Arreglos de objetos de jobs
-$jobs = [    
-    $job1,
-    $job2,
-    $job3
-  ];
 
   $projects = [
     $project1,
@@ -24,16 +14,16 @@ $jobs = [
   ];
   
   //Recibe parametro desde linea 157 de index
-  function printElements(Printable $job)
+  function printElements($job)
   {
-    if ($job->getVisible() == false) {
-      return; // sale de la función
-    }
+    //if ($job->getVisible() == false) {
+    //  return; // sale de la función
+   // }
   
     echo '<li class="work-position">';
-    echo '<h5>'.$job->getTitle().'</h5>';
-    echo '<p>'.$job->getDescription().'</p>';
-    echo '<p>'.$job->getDurationAsString().'</p>';
+    echo '<h5>'.$job->title.'</h5>';
+    echo '<p>'.$job->description.'</p>';
+    //echo '<p>'.$job->getDurationAsString().'</p>';
     echo '<strong>Achievements:</strong>';
     echo '<ul>';
     echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
@@ -44,16 +34,16 @@ $jobs = [
   }
 
 
-  function printElementsProject(Printable $job)
+  function printElementsProject($job)
   {
-    if ($job->getVisible() == false) {
-      return; // sale de la función
-    }
+   // if ($job->getVisible() == false) {
+    //  return; // sale de la función
+    //}
   
     echo '<li class="work-position">';
     echo '<h5>'.$job->getTitle().'</h5>';
     echo '<p>'.$job->getDescription().'</p>';
-    echo '<p>'.$job->getDurationAsString().'</p>';
+    //echo '<p>'.$job->getDurationAsString().'</p>';
     echo '<strong>Achievements:</strong>';
     echo '<ul>';
     echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
